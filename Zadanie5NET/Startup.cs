@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Zadanie5NET.Middleware;
 
 namespace Zadanie5NET
 {
@@ -23,6 +24,7 @@ namespace Zadanie5NET
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddBrowserDetection();
             services.AddRazorPages();
         }
 
@@ -41,6 +43,9 @@ namespace Zadanie5NET
             }
 
             app.UseHttpsRedirection();
+
+            app.UseMiddleware<BrowserNameMiddleware>();
+
             app.UseStaticFiles();
 
             app.UseRouting();
