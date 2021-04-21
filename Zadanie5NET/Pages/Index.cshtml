@@ -3,7 +3,8 @@
 @{
     ViewData["Title"] = "Home page";
 }
+@inject Shyjus.BrowserDetection.IBrowserDetector detector
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
-    <h1>Używasz </h1>
+    <h1>Używasz @detector.Browser.Name :)</h1>
 </div>

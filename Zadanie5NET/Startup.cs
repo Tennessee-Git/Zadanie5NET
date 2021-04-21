@@ -52,8 +52,6 @@ namespace Zadanie5NET
 
             app.UseHttpsRedirection();
 
-            app.UseMiddleware<BrowserNameMiddleware>();
-
             app.UseStaticFiles();
 
             app.UseRouting();
@@ -61,6 +59,8 @@ namespace Zadanie5NET
             app.UseAuthorization();
 
             app.UseSession();
+
+            app.UseMiddleware<BrowserNameMiddleware>();
 
             app.UseEndpoints(endpoints =>
             {
