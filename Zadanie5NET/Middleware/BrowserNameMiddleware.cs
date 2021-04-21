@@ -9,7 +9,7 @@ namespace Zadanie5NET.Middleware
 {
     public class BrowserNameMiddleware
     {
-        private RequestDelegate _next;
+        private readonly RequestDelegate _next;
 
         public BrowserNameMiddleware(RequestDelegate next)
         {
@@ -18,13 +18,15 @@ namespace Zadanie5NET.Middleware
         public async Task InvokeAsync(HttpContext context, IBrowserDetector detector)
         {
             var browser = detector.Browser;
-            if(browser.Name == BrowserNames.Edge || browser.Name == BrowserNames.EdgeChromium
+            //context.Session.SetString("BrowserName", browser.Name);
+
+            if (browser.Name == BrowserNames.Edge || browser.Name == BrowserNames.EdgeChromium
                 || browser.Name == BrowserNames.InternetExplorer)
             {
                 await context.Response.WriteAsync("Przeglądarka nie jest obsługiwana");
             }
-            else
-                await _next.Invoke(context);
+            await _next(context);
         }
+
     }
 }
