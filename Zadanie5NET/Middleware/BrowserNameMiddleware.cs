@@ -20,11 +20,8 @@ namespace Zadanie5NET.Middleware
             var browser = detector.Browser;
             //context.Session.SetString("BrowserName", browser.Name);
 
-            if (browser.Name == BrowserNames.Edge || browser.Name == BrowserNames.EdgeChromium
-                || browser.Name == BrowserNames.InternetExplorer)
-            {
+            if (browser.Name == BrowserNames.Edge || browser.Name == BrowserNames.EdgeChromium || browser.Name == BrowserNames.InternetExplorer)
                 await context.Response.WriteAsync("Przeglądarka nie jest obsługiwana");
-            }
             await _next(context);
         }
 
